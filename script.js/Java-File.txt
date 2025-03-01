@@ -1,0 +1,37 @@
+document.addEventListener("DOMContentLoaded", function () {
+    // Add to Cart Functionality
+    const cart = [];
+    const addToCartButtons = document.querySelectorAll(".add-to-cart");
+    
+    addToCartButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const product = this.parentElement;
+            const productName = product.querySelector("h3").innerText;
+            const productPrice = product.querySelector("p").innerText;
+            
+            cart.push({ name: productName, price: productPrice });
+            alert(`${productName} added to cart!`);
+        });
+    });
+    
+    // Smooth Scroll Effect
+    document.querySelectorAll("nav a").forEach(anchor => {
+        anchor.addEventListener("click", function (event) {
+            event.preventDefault();
+            const sectionId = this.getAttribute("href").substring(1);
+            document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+        });
+    });
+
+    // Button Animation
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("mouseenter", () => {
+            button.style.transform = "scale(1.1)";
+            button.style.transition = "transform 0.2s ease-in-out";
+        });
+        button.addEventListener("mouseleave", () => {
+            button.style.transform = "scale(1)";
+        });
+    });
+});
